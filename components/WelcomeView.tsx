@@ -1,14 +1,17 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { ScrollView, StyleSheet, Text, View } from 'react-native';
 
 export function WelcomeView() {
 	return (
-		<View style={styles.view}>
+		<ScrollView
+			style={styles.view}
+			indicatorStyle='white'
+		>
 			<Text style={[styles.text, styles.title]}>Welcome to Little Lemon!</Text>
 			<Text style={styles.text}>
 				Little Lemon is a charming neighborhood bistro that serves simple food and classic cocktails in a lively but casual environment. We would love to hear more about your experience with us!
 			</Text>
-		</View>
+		</ScrollView>
 	);
 }
 
@@ -21,11 +24,11 @@ const styles = StyleSheet.create({
 	},
 	text: {
 		color: 'white',
-		fontSize: 16,
+		fontSize: 48,
 		textAlign: 'center',
 	},
 	title: {
-		fontSize: 32,
+		fontSize: 74,
 		marginBottom: 38
 	}
 });
