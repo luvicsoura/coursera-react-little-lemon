@@ -23,12 +23,12 @@ const styles = StyleSheet.create({
 		flexDirection: 'column',
 	},
 	text: {
-		color: 'white',
-		fontSize: 48,
+		color: '#edefee',
+		fontSize: 26,
 		textAlign: 'center',
 	},
 	title: {
-		fontSize: 74,
+		fontSize: 36,
 		marginBottom: 38
 	}
 });
