@@ -1,10 +1,17 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { ScrollView, StyleSheet, View } from 'react-native';
+import { LittleLemonHeader } from './components/LittleLemonHeader';
+import { LittleLemonFooter } from './components/LittleLemonFooter';
+import { WelcomeView } from './components/WelcomeView';
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
+      <ScrollView>
+      <LittleLemonHeader/>
+        <WelcomeView/>
+      </ScrollView>
+      <LittleLemonFooter/>
       <StatusBar style="auto" />
     </View>
   );
@@ -13,8 +20,6 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: '#495E57',
   },
 });
