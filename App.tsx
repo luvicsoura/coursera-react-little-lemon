@@ -1,15 +1,15 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, View } from 'react-native';
-import { LittleLemonHeader } from './components/LittleLemonHeader';
 import { LittleLemonFooter } from './components/LittleLemonFooter';
-import { WelcomeView } from './components/WelcomeView';
+import { LittleLemonHeader } from './components/LittleLemonHeader';
+import { MenuItems } from './components/MenuItems';
 
 export default function App() {
   return (
     <View style={styles.container}>
       <View style={{flex: 1}}>
         <LittleLemonHeader/>
-        <WelcomeView/>
+        <MenuItems/>
       </View>
       <LittleLemonFooter/>
       <StatusBar style="auto" />
