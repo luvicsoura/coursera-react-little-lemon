@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ScrollView, StyleSheet, Text, TextInput } from 'react-native';
+import { KeyboardAvoidingView, ScrollView, StyleSheet, Text, TextInput } from 'react-native';
 
 export function WelcomeView() {
 	const [ firstName, setFirstName ] = useState('');
@@ -8,17 +8,22 @@ export function WelcomeView() {
 		<ScrollView
 			style={styles.view}
 			indicatorStyle='white'
+			keyboardDismissMode='on-drag'
 		>
-			<Text style={[styles.text, styles.title]}>Welcome to Little Lemon!</Text>
-			<Text style={[styles.text, styles.description]}>
-				Little Lemon is a charming neighborhood bistro that serves simple food and classic cocktails in a lively but casual environment. We would love to hear more about your experience with us!
-			</Text>
-			<TextInput
-				style={styles.input}
-				value={firstName}
-				onChangeText={setFirstName}
-				placeholder='First Name'
-			/>
+			<KeyboardAvoidingView
+				behavior='position'
+			>
+				<Text style={[styles.text, styles.title]}>Welcome to Little Lemon!</Text>
+				<Text style={[styles.text, styles.description]}>
+					Little Lemon is a charming neighborhood bistro that serves simple food and classic cocktails in a lively but casual environment. We would love to hear more about your experience with us!
+				</Text>
+				<TextInput
+					style={styles.input}
+					value={firstName}
+					onChangeText={setFirstName}
+					placeholder='First Name'
+				/>
+			</KeyboardAvoidingView>
 		</ScrollView>
 	);
 }
