@@ -1,28 +1,41 @@
-import { useState } from 'react';
-import { ScrollView, Text, StyleSheet, TextInput } from 'react-native';
+import { useCallback, useState } from 'react';
+import { ScrollView, StyleSheet, Text, TextInput } from 'react-native';
+import { TextButton } from './TextButton';
 
 export function LoginScreen() {
+	const [loggedIn, setLoggedIn] = useState(false);
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
+
+	const login = useCallback(() => setLoggedIn(true), []);
 
 	return (
 		<ScrollView style={styles.container}>
 			<Text style={styles.headerText}>Welcome to Little Lemon</Text>
-			<Text style={styles.regularText}>Login to continue</Text>
-			<TextInput
-				placeholder='email'
-				keyboardType='email-address'
-				value={email}
-				style={styles.textInput}
-				onChangeText={setEmail}
-			/>
-			<TextInput
-				placeholder='password'
-				value={password}
-				style={styles.textInput}
-				onChangeText={setPassword}
-				secureTextEntry
-			/>
+			<Text style={styles.regularText}>
+				{loggedIn ? 'You\'re logged in!' : 'Login to continue'}
+			</Text>
+			{!loggedIn && (
+				<>
+					<TextInput
+						placeholder='email'
+						keyboardType='email-address'
+						value={email}
+						style={styles.textInput}
+						onChangeText={setEmail}
+					/>
+					<TextInput
+						placeholder='password'
+						value={password}
+						style={styles.textInput}
+						onChangeText={setPassword}
+						secureTextEntry
+					/>
+					<TextButton onPress={login}>
+						Log in
+					</TextButton>
+				</>
+			)}
 		</ScrollView>
 	);
 }
