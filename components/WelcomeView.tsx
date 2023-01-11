@@ -1,7 +1,10 @@
 import React from 'react';
-import { Image, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { Image, ScrollView, StyleSheet, Text, View, useColorScheme } from 'react-native';
 
 export function WelcomeView() {
+	const colorScheme = useColorScheme();
+	const lightThemeActive = colorScheme === 'light';
+
 	return (
 		<ScrollView
 			style={styles.view}
@@ -16,13 +19,21 @@ export function WelcomeView() {
 					accessibilityLabel="Little Lemon Logo"
 					accessible
 				/>
-				<Text style={[styles.text, styles.title]}>Little Lemon</Text>
+				<Text style={textStyle(lightThemeActive, [styles.title])}>Little Lemon</Text>
 			</View>
-			<Text style={[styles.text, styles.description]}>
+			<Text style={textStyle(lightThemeActive, [styles.description])}>
 				Little Lemon is a charming neighborhood bistro that serves simple food and classic cocktails in a lively but casual environment. We would love to hear more about your experience with us!
 			</Text>
 		</ScrollView>
 	);
+}
+
+function textStyle(lightTheme: boolean, otherStyles: any[]) {
+	return [
+		styles.text,
+		lightTheme ? styles.textLightTheme : styles.textDarkTheme,
+		...otherStyles
+	];
 }
 
 const styles = StyleSheet.create({
@@ -33,9 +44,14 @@ const styles = StyleSheet.create({
 		flexDirection: 'column',
 	},
 	text: {
-		color: '#edefee',
 		fontSize: 26,
 		textAlign: 'center',
+	},
+	textLightTheme: {
+		color: '#333333',
+	},
+	textDarkTheme: {
+		color: '#edefee'
 	},
 	description: {
 		marginBottom: 32,
