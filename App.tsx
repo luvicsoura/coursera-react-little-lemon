@@ -1,5 +1,6 @@
+import { NavigationContainer } from '@react-navigation/native';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, View, useColorScheme, Text } from 'react-native';
+import { StyleSheet, View, useColorScheme } from 'react-native';
 import { LittleLemonHeader } from './components/LittleLemonHeader';
 import { WelcomeView } from './components/WelcomeView';
 
@@ -7,13 +8,15 @@ export default function App() {
   const colorScheme = useColorScheme();
 
   return (
-    <View style={[styles.container, colorScheme === 'light' ? styles.containerLightTheme : styles.containerDarkTheme]}>
-      <View style={{flex: 1}}>
-        <LittleLemonHeader/>
-        <WelcomeView/>
+    <NavigationContainer>
+      <View style={[styles.container, colorScheme === 'light' ? styles.containerLightTheme : styles.containerDarkTheme]}>
+        <View style={{flex: 1}}>
+          <LittleLemonHeader/>
+          <WelcomeView/>
+        </View>
+        <StatusBar style="auto" />
       </View>
-      <StatusBar style="auto" />
-    </View>
+    </NavigationContainer>
   );
 }
 
