@@ -1,29 +1,26 @@
-import React, { useState } from 'react';
-import { KeyboardAvoidingView, ScrollView, StyleSheet, Text, TextInput } from 'react-native';
+import React from 'react';
+import { Image, ScrollView, StyleSheet, Text, View } from 'react-native';
 
 export function WelcomeView() {
-	const [ firstName, setFirstName ] = useState('');
-	
 	return (
 		<ScrollView
 			style={styles.view}
 			indicatorStyle='white'
 			keyboardDismissMode='on-drag'
 		>
-			<KeyboardAvoidingView
-				behavior='position'
-			>
-				<Text style={[styles.text, styles.title]}>Welcome to Little Lemon!</Text>
-				<Text style={[styles.text, styles.description]}>
-					Little Lemon is a charming neighborhood bistro that serves simple food and classic cocktails in a lively but casual environment. We would love to hear more about your experience with us!
-				</Text>
-				<TextInput
-					style={styles.input}
-					value={firstName}
-					onChangeText={setFirstName}
-					placeholder='First Name'
+			<View style={styles.header}>
+				<Image
+					resizeMode='contain'
+					style={styles.logo}
+					source={require('littlelemonrestaurant/assets/img/littleLemonLogo.png')}
+					accessibilityLabel="Little Lemon Logo"
+					accessible
 				/>
-			</KeyboardAvoidingView>
+				<Text style={[styles.text, styles.title]}>Little Lemon</Text>
+			</View>
+			<Text style={[styles.text, styles.description]}>
+				Little Lemon is a charming neighborhood bistro that serves simple food and classic cocktails in a lively but casual environment. We would love to hear more about your experience with us!
+			</Text>
 		</ScrollView>
 	);
 }
@@ -43,17 +40,18 @@ const styles = StyleSheet.create({
 	description: {
 		marginBottom: 32,
 	},
+	header: {
+		alignItems: 'center',
+		justifyContent: 'center',
+		flexDirection: 'row',
+		flexWrap: 'nowrap',
+	},
+	logo: {
+		width: 100,
+		height: 200,
+		marginRight: 24,
+	},
 	title: {
 		fontSize: 36,
-		marginBottom: 38
-	},
-	input: { 
-		height: 40, 
-		margin: 12, 
-		borderWidth: 1, 
-		padding: 10, 
-		fontSize: 16, 
-		borderColor: 'EDEFEE', 
-		backgroundColor: 'white', 
 	},
 });
