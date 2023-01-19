@@ -1,11 +1,11 @@
+import 'react-native-gesture-handler';
+import { createDrawerNavigator } from '@react-navigation/drawer';
 import { NavigationContainer } from '@react-navigation/native';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, View, useColorScheme } from 'react-native';
 import { LittleLemonHeader } from './components/LittleLemonHeader';
-import { WelcomeView } from './components/WelcomeView';
 import { LoginScreen } from './components/LoginScreen';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import Ionicons from '@expo/vector-icons/Ionicons';
+import { WelcomeView } from './components/WelcomeView';
 
 export default function App() {
   const colorScheme = useColorScheme();
@@ -23,45 +23,25 @@ export default function App() {
   );
 }
 
-const { Navigator, Screen } = createBottomTabNavigator();
+const { Navigator, Screen } = createDrawerNavigator();
 
 const Routes = () => (
   <Navigator
     initialRouteName='Login'
     screenOptions={{
-      tabBarActiveTintColor: 'tomato',
-      tabBarInactiveTintColor: 'gray',
+      drawerPosition: 'left',
     }}
   >
     <Screen
       name="Login"
-      options={{
-        headerShown: false,
-        tabBarIcon: LoginScreenIcon
-      }}
       component={LoginScreen}
     />
     <Screen
       name="Welcome"
-      options={{
-        tabBarIcon: WelcomeScreenIcon
-      }}
       component={WelcomeView}
     />
   </Navigator>
 );
-
-type TabBarIconProps = { focused: boolean, size: number, color: string};
-
-const LoginScreenIcon = ({ focused, size, color }: TabBarIconProps) => {
-  const iconName = focused ? 'log-in' : 'log-in-outline';
-  return <Ionicons name={iconName} size={size} color={color} />;
-};
-
-const WelcomeScreenIcon =  ({ focused, size, color }: TabBarIconProps) => {
-  const iconName = focused ? 'information-circle' : 'information-circle-outline';
-  return <Ionicons name={iconName} size={size} color={color} />;
-};
 
 const styles = StyleSheet.create({
   container: {
